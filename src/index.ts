@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge'
 import type { PluginConfig } from './types'
-import { CollectionConfig, Config, Document, Operation, PayloadRequest, Plugin, RequestContext } from 'payload'
+import { CollectionConfig, Config, Document, Operation, PayloadRequest, Plugin } from 'payload'
 
 
 export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Plugin => (config) => {
@@ -8,7 +8,7 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
     ...config,
     collections: config.collections?.map((collection) => {
       const { slug } = collection
-      const isEnabled = pluginConfig.collections[slug] !== undefined
+      const isEnabled = pluginConfig.collections.includes(slug as string)
 
       if (isEnabled) {
         return {
@@ -19,8 +19,7 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
               ...collection.hooks?.afterChange || [],
               async ({ doc, req }: { doc: Document; req: PayloadRequest; operation: Operation; collection: CollectionConfig }) => {
                 try {
-                  const { generatePath } = pluginConfig.collections[slug]
-                  const path = await generatePath({
+                  const url = await pluginConfig.generateUrl({
                     collectionConfig: collection,
                     doc,
                     req,
@@ -28,10 +27,8 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
                     locale: req.locale as string,
                   })
 
-                  const url = `${config.serverURL || pluginConfig.nextUrl}${path}`
-
                   await fetch(url, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                       'Cache-Control': 'no-cache',
                       'Content-Type': 'application/json',
