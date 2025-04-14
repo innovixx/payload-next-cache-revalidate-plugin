@@ -4,7 +4,7 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
-import plugin from '../../dist'
+import { payloadNextCacheRevalidatePlugin } from '../../src'
 
 import Media from './collections/Media'
 import Pages from './collections/Pages'
@@ -40,15 +40,17 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'lib/types.ts'),
   },
   plugins: [
-    plugin({
-      overwrites: {
-        admin: {
-          autoLogin: {
-            email: 'admin@innovixx.co.uk',
-            password: 'Pa$$w0rd!',
-          },
+    payloadNextCacheRevalidatePlugin({
+      nextUrl: process.env.NEXT_URL || 'http://localhost:3000',
+      collections: {
+        'pages': {
+          generatePath: async ({ doc, req }) => {
+            const { slug } = doc
+
+            return `/${slug}`
+          }
         },
-      },
-    }),
+      }
+    }) as any,
   ]
 })

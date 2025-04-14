@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     volumes:
@@ -10,7 +10,7 @@ services:
       - ~/.ssh:/home/vscode/.ssh:cached
       - ~/.npmrc:/home/vscode/.npmrc:cached
     command: sleep infinity
-    working_dir: /workspaces/payload-plugin-boilerplate
+    working_dir: /workspaces/payload-next-cache-revalidate-plugin
 
   db:
     image: mongo:latest

@@ -1,5 +1,5 @@
 {
-	"name": "payload-plugin-boilerplate",
+	"name": "payload-next-cache-revalidate-plugin",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
