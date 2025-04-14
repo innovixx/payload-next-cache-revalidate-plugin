@@ -1,4 +1,3 @@
-import deepmerge from 'deepmerge'
 import type { PluginConfig } from './types'
 import { CollectionConfig, Config, Document, Operation, PayloadRequest, Plugin } from 'payload'
 
