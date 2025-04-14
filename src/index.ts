@@ -30,7 +30,6 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
 
                   const url = `${config.serverURL || pluginConfig.nextUrl}${path}`
 
-                  // @ts-expect-error fetch is available in next
                   await fetch(url, {
                     method: 'GET',
                     headers: {
