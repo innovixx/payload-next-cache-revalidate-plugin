@@ -1,5 +1,5 @@
 import type { PluginConfig } from './types'
-import { CollectionConfig, Config, Document, Operation, PayloadRequest, Plugin } from 'payload'
+import { CollectionConfig, Document, Operation, PayloadRequest, Plugin } from 'payload'
 
 
 export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Plugin => (config) => ({
@@ -23,17 +23,19 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
                   req,
                 })
 
-                await fetch(url, {
+                fetch(url, {
                   method: 'POST',
                   headers: {
                     'Cache-Control': 'no-cache',
                     'Content-Type': 'application/json',
                   },
-                });
-
-                if (pluginConfig.verbose) req.payload.logger.info(`Cache revalidation triggered for ${url}`)
+                }).then(() => {
+                  if (pluginConfig.verbose) req.payload.logger.info(`Cache revalidation triggered for ${url}`)
+                }).catch((err) => {
+                  if (pluginConfig.verbose) req.payload.logger.error(`Error revalidating cache for ${slug}`, err)
+                })
               } catch (err) {
-                if (pluginConfig.verbose) req.payload.logger.error(`Error revalidating cache for ${slug}`, err)
+                throw new Error(`Error in afterChange hook for ${slug}: ${err}`)
               }
             }
           ]
