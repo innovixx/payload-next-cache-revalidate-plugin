@@ -9,7 +9,6 @@ export type GenerateUrl<T = any> = (
 ) => Promise<string> | string
 
 export interface PluginConfig {
-  overwrites?: Partial<Config>
   generateUrl: GenerateUrl
   collections: CollectionSlug[]
   verbose?: boolean
