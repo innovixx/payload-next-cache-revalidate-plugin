@@ -23,8 +23,6 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
                     collectionConfig: collection,
                     doc,
                     req,
-                    globalConfig: config.globals,
-                    locale: req.locale as string,
                   })
 
                   await fetch(url, {

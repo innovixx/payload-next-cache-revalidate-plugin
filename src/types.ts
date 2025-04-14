@@ -4,8 +4,6 @@ export type GenerateUrl<T = any> = (
   args: {
     collectionConfig?: CollectionConfig
     doc: T
-    globalConfig?: GlobalConfig[]
-    locale?: string
     req: PayloadRequest
   },
 ) => Promise<string> | string
