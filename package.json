@@ -1,6 +1,6 @@
 {
   "name": "@innovixx/payload-next-cache-revalidate-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage:": "https://innovixx.co.uk",
   "repository": "git@github.com:innovixx/payload-next-cache-revalidate-plugin.git",
   "description": "payload-next-cache-revalidate-plugin",
