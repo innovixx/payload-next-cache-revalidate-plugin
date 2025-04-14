@@ -31,9 +31,11 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
                       'Cache-Control': 'no-cache',
                       'Content-Type': 'application/json',
                     },
-                  })
+                  });
+
+                  if (pluginConfig.verbose) req.payload.logger.info(`Cache revalidation triggered for ${url}`)
                 } catch (err) {
-                  req.payload.logger.error(`Error in afterChange hook: ${err}`)
+                  if (pluginConfig.verbose) req.payload.logger.error(`Error revalidating cache for ${slug}`, err)
                 }
               }
             ]

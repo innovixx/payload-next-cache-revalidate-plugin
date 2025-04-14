@@ -12,4 +12,5 @@ export interface PluginConfig {
   overwrites?: Partial<Config>
   generateUrl: GenerateUrl
   collections: CollectionSlug[]
+  verbose?: boolean
 }
