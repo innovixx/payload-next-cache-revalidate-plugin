@@ -1,6 +1,6 @@
 {
   "name": "@innovixx/payload-next-cache-revalidate-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage:": "https://innovixx.co.uk",
   "repository": "git@github.com:innovixx/payload-next-cache-revalidate-plugin.git",
   "description": "plugin for Payload CMS that calls Next.js revalidation endpoints to clear the server-side cache, ensuring that users receive the most up-to-date content.",
