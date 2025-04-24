@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "homepage:": "https://innovixx.co.uk",
   "repository": "git@github.com:innovixx/payload-next-cache-revalidate-plugin.git",
-  "description": "payload-next-cache-revalidate-plugin",
+  "description": "plugin for Payload CMS that calls Next.js revalidation endpoints to clear the server-side cache, ensuring that users receive the most up-to-date content.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -18,10 +18,9 @@
     "plugin"
   ],
   "author": "support@innovixx.co.uk",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "peerDependencies": {
-    "payload": "^3.1.1",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+    "payload": "^3.1.1"
   },
   "devDependencies": {
     "@payloadcms/eslint-config": "^1.1.1",
