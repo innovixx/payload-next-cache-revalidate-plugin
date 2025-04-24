@@ -35,7 +35,7 @@ export const payloadNextCacheRevalidatePlugin = (pluginConfig: PluginConfig): Pl
                   if (pluginConfig.verbose) req.payload.logger.error(`Error revalidating cache for ${slug}`, err)
                 })
               } catch (err) {
-                throw new Error(`Error in Payload Next cache validation plugin afterChange hook: ${err}`)
+                req.payload.logger.error(`Error in Payload Next cache validation plugin afterChange hook: ${err}`)
               }
             }
           ]
